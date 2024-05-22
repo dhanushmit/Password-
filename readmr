@@ -1,0 +1,22 @@
+### Overview of the Script
+1. **Class Initialization (`__init__`)**:
+   - Initializes the invoice number and a list to store invoices.
+
+2. **Creating an Invoice (`create_invoice`)**:
+   - Collects basic information like customer name and address.
+   - Calls `get_items` to gather item details.
+   - Calculates the total cost by calling `calculate_total`.
+   - Displays the generated invoice using `display_invoice`.
+   - Increments the invoice number for the next invoice.
+
+3. **Collecting Items (`get_items`)**:
+   - Repeatedly prompts the user to enter item details until they choose to stop.
+
+4. **Calculating Total (`calculate_total`)**:
+   - Computes the total amount for all items.
+
+5. **Displaying Invoice (`display_invoice`)**:
+   - Prints the invoice details in a formatted manner.
+
+### Running the Script
+To run the script, execute it in a Python environment. It will prompt you for customer details and item specifics, then generate and display the invoice. You can create multiple invoices in a single run.
