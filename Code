@@ -1,0 +1,57 @@
+import datetime
+
+class InvoiceGenerator:
+    def __init__(self):
+        self.invoice_number = 1
+        self.invoices = []
+
+    def create_invoice(self):
+        invoice = {}
+        invoice['invoice_number'] = self.invoice_number
+        invoice['date'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        invoice['customer_name'] = input("Enter customer name: ")
+        invoice['customer_address'] = input("Enter customer address: ")
+        invoice['items'] = self.get_items()
+        invoice['total'] = self.calculate_total(invoice['items'])
+        self.invoices.append(invoice)
+        self.invoice_number += 1
+        self.display_invoice(invoice)
+
+    def get_items(self):
+        items = []
+        while True:
+            item = {}
+            item['description'] = input("Enter item description: ")
+            item['quantity'] = int(input("Enter item quantity: "))
+            item['price'] = float(input("Enter item price: "))
+            items.append(item)
+            more_items = input("Add another item? (y/n): ")
+            if more_items.lower() != 'y':
+                break
+        return items
+
+    def calculate_total(self, items):
+        total = 0
+        for item in items:
+            total += item['quantity'] * item['price']
+        return total
+
+    def display_invoice(self, invoice):
+        print("\n------ Invoice ------")
+        print(f"Invoice Number: {invoice['invoice_number']}")
+        print(f"Date: {invoice['date']}")
+        print(f"Customer Name: {invoice['customer_name']}")
+        print(f"Customer Address: {invoice['customer_address']}")
+        print("\nItems:")
+        for item in invoice['items']:
+            print(f"Description: {item['description']}, Quantity: {item['quantity']}, Price: {item['price']}, Total: {item['quantity'] * item['price']}")
+        print(f"\nTotal Amount: {invoice['total']}")
+        print("---------------------\n")
+
+if __name__ == "__main__":
+    generator = InvoiceGenerator()
+    while True:
+        generator.create_invoice()
+        another_invoice = input("Create another invoice? (y/n): ")
+        if another_invoice.lower() != 'y':
+            break
